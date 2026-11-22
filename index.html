@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎂 عيد ميلاد لميس 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --glass: rgba(255,255,255,0.10);
+  --glass-border: rgba(255,255,255,0.28);
+  --neon-pink:#ff2fd6; --neon-purple:#a855f7; --neon-cyan:#22e6ff; --neon-gold:#ffd166;
+}
+*{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{
+  font-family:'Cairo',sans-serif; color:#fff; overflow-x:hidden;
+  background:#07010f;
+}
+/* ===== خلفية نيون متحركة ===== */
+.bg-blob{position:fixed; border-radius:50%; filter:blur(90px); opacity:.55; z-index:0; animation:blobMove 18s ease-in-out infinite alternate;}
+.b1{width:55vw;height:55vw;background:radial-gradient(circle,#ff2fd6,transparent 65%);top:-15%;right:-10%;}
+.b2{width:50vw;height:50vw;background:radial-gradient(circle,#22e6ff,transparent 65%);bottom:-15%;left:-10%;animation-delay:-6s;}
+.b3{width:45vw;height:45vw;background:radial-gradient(circle,#a855f7,transparent 65%);top:35%;left:30%;animation-delay:-12s;}
+@keyframes blobMove{
+  0%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(6vw,-5vh) scale(1.15);}
+  100%{transform:translate(-5vw,6vh) scale(.95);}
+}
+.grid-overlay{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:42px 42px;
+  mask-image:radial-gradient(circle at 50% 40%,#000 30%,transparent 85%);
+}
+#fx{position:fixed;inset:0;z-index:1;pointer-events:none;}
+
+/* ===== الشاشات ===== */
+.screen{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;}
+.hidden{display:none !important;}
+
+/* ===== شاشة القفل ===== */
+#lockScreen{justify-content:center;padding:20px;}
+.lock-card{
+  width:min(420px,92vw); text-align:center; padding:44px 28px;
+  background:var(--glass); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+  border:1px solid var(--glass-border); border-radius:32px;
+  box-shadow:0 0 60px rgba(168,85,247,.35), inset 0 1px 0 rgba(255,255,255,.25);
+  animation:floatIn .8s cubic-bezier(.2,.9,.3,1.2);
+}
+@keyframes floatIn{from{opacity:0;transform:translateY(40px) scale(.9);}to{opacity:1;transform:none;}}
+.lock-emoji{font-size:56px;animation:swing 2.5s ease-in-out infinite;}
+@keyframes swing{0%,100%{transform:rotate(-8deg);}50%{transform:rotate(8deg);}}
+.lock-card h1{font-size:24px;margin:14px 0 6px;background:linear-gradient(90deg,#ff2fd6,#22e6ff,#a855f7);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.lock-card p{color:rgba(255,255,255,.7);font-size:14px;margin-bottom:24px;}
+.pin-row{display:flex;gap:10px;justify-content:center;direction:ltr;}
+.pin-box{
+  width:46px;height:58px;text-align:center;font-size:22px;font-weight:700;color:#fff;
+  background:rgba(255,255,255,.08);border:1px solid var(--glass-border);border-radius:16px;
+  outline:none; transition:.25s;
+}
+.pin-box:focus{border-color:var(--neon-cyan);box-shadow:0 0 18px rgba(34,230,255,.5);background:rgba(34,230,255,.08);}
+.pin-box.filled{border-color:var(--neon-pink);box-shadow:0 0 14px rgba(255,47,214,.45);}
+.lock-btn{margin-top:22px;width:100%;}
+.err{color:#ff5c8a;font-size:13px;margin-top:12px;min-height:20px;}
+.shake{animation:shake .45s;}
+@keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-10px);}40%{transform:translateX(10px);}60%{transform:translateX(-8px);}80%{transform:translateX(8px);}}
+
+/* ===== أزرار زجاجية (شكل الايفون) ===== */
+.glass-btn{
+  font-family:inherit;font-size:16px;font-weight:700;color:#fff;cursor:pointer;
+  padding:14px 30px;border-radius:22px;border:1px solid var(--glass-border);
+  background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.06));
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  box-shadow:0 8px 24px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .18s, box-shadow .25s;
+}
+.glass-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 0 26px rgba(255,47,214,.5),0 8px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.4);}
+.glass-btn:active{transform:scale(.96);}
+.glass-btn.cyan:hover{box-shadow:0 0 26px rgba(34,230,255,.55),0 8px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.4);}
+.glass-btn.purple:hover{box-shadow:0 0 26px rgba(168,85,247,.6),0 8px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.4);}
+.glass-btn.danger{color:#ff8fab;}
+
+/* ===== الصفحة الرئيسية ===== */
+#main{padding:34px 16px 80px;max-width:960px;width:100%;margin:0 auto;}
+.hero{text-align:center;padding:26px 16px 10px;}
+.hero h1{
+  font-size:clamp(26px,5.5vw,44px);font-weight:900;line-height:1.7;
+  background:linear-gradient(90deg,#ffd166,#ff2fd6,#a855f7,#22e6ff,#ffd166);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:gradShift 6s linear infinite;
+  filter:drop-shadow(0 0 18px rgba(255,47,214,.45));
+}
+@keyframes gradShift{to{background-position:300% 0;}}
+.hero .sub{font-size:clamp(16px,3.4vw,22px);color:#ffd166;margin-top:8px;text-shadow:0 0 16px rgba(255,209,102,.6);}
+
+/* عداد العمر */
+.age-wrap{margin:34px auto 10px;width:min(640px,94%);}
+.age-title{text-align:center;font-size:18px;color:rgba(255,255,255,.85);margin-bottom:14px;}
+.age-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;direction:ltr;}
+@media(max-width:560px){.age-grid{grid-template-columns:repeat(3,1fr);}}
+.age-cell{
+  text-align:center;padding:14px 6px;border-radius:20px;
+  background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--glass-border);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25), 0 0 22px rgba(34,230,255,.15);
+}
+.age-cell b{display:block;font-size:clamp(20px,4vw,30px);font-weight:900;text-shadow:0 0 14px currentColor;}
+.age-cell span{font-size:12px;color:rgba(255,255,255,.7);}
+.c-y{color:#ffd166;}.c-m{color:#ff2fd6;}.c-d{color:#22e6ff;}.c-h{color:#a855f7;}.c-min{color:#4ade80;}.c-s{color:#fb7185;}
+
+/* قسم الكلمات */
+.section-title{
+  text-align:center;font-size:clamp(20px,4vw,28px);font-weight:900;margin:44px 0 20px;
+  text-shadow:0 0 20px rgba(168,85,247,.7);
+}
+.gifts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;width:100%;}
+.gift-card{
+  position:relative;padding:22px 20px;border-radius:24px;
+  background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28), 0 10px 30px rgba(0,0,0,.35);
+  animation:cardIn .6s cubic-bezier(.2,.9,.3,1.15) backwards;
+}
+@keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.92);}to{opacity:1;transform:none;}}
+.gift-card::before{
+  content:"💜";position:absolute;top:-14px;right:16px;font-size:26px;
+  filter:drop-shadow(0 0 10px rgba(255,47,214,.8));
+}
+.gift-card p{font-size:16px;line-height:1.9;color:rgba(255,255,255,.95);}
+
+/* شريط الموسيقى */
+.music-bar{
+  position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:50;
+  display:flex;align-items:center;gap:12px;padding:10px 18px;border-radius:26px;
+  background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid var(--glass-border);
+  box-shadow:0 10px 30px rgba(0,0,0,.45),0 0 24px rgba(34,230,255,.2), inset 0 1px 0 rgba(255,255,255,.3);
+  max-width:94vw;
+}
+.song-name{font-size:13px;color:#22e6ff;text-shadow:0 0 10px rgba(34,230,255,.7);white-space:nowrap;overflow:hidden;max-width:44vw;text-overflow:ellipsis;}
+.music-btn{
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--glass-border);cursor:pointer;
+  background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.06));
+  font-size:18px;color:#fff;display:flex;align-items:center;justify-content:center;
+  transition:transform .15s;
+}
+.music-btn:active{transform:scale(.9);}
+.eq{display:flex;gap:3px;align-items:flex-end;height:18px;}
+.eq i{width:4px;background:linear-gradient(180deg,#22e6ff,#a855f7);border-radius:2px;animation:eq 1s ease-in-out infinite;}
+.eq i:nth-child(2){animation-delay:.2s;}.eq i:nth-child(3){animation-delay:.4s;}.eq i:nth-child(4){animation-delay:.1s;}
+.eq.off i{animation-play-state:paused;height:4px !important;opacity:.4;}
+@keyframes eq{0%,100%{height:5px;}50%{height:18px;}}
+#musicHint{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:60;
+  padding:12px 22px;border-radius:22px;font-size:14px;font-weight:700;cursor:pointer;
+  background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--neon-gold);
+  color:#ffd166;box-shadow:0 0 24px rgba(255,209,102,.4);
+  animation:hintPulse 1.6s ease-in-out infinite;
+}
+@keyframes hintPulse{0%,100%{transform:translateX(-50%) scale(1);}50%{transform:translateX(-50%) scale(1.05);}}
+
+/* زر الأدمن */
+.admin-fab{
+  position:fixed;top:16px;right:16px;z-index:50;
+  width:48px;height:48px;border-radius:16px;font-size:20px;cursor:pointer;
+  background:var(--glass);backdrop-filter:blur(18px);border:1px solid var(--glass-border);color:#fff;
+  transition:transform .2s;
+}
+.admin-fab:hover{transform:rotate(20deg) scale(1.1);}
+
+/* ===== المودالات ===== */
+.modal-bg{
+  position:fixed;inset:0;z-index:100;background:rgba(5,0,15,.7);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;padding:16px;
+}
+.modal{
+  width:min(520px,96vw);max-height:88vh;overflow-y:auto;border-radius:28px;padding:28px;
+  background:rgba(20,10,40,.85);backdrop-filter:blur(30px);border:1px solid var(--glass-border);
+  box-shadow:0 0 60px rgba(168,85,247,.4);
+  animation:floatIn .45s cubic-bezier(.2,.9,.3,1.2);
+}
+.modal h2{text-align:center;font-size:22px;margin-bottom:18px;color:#ffd166;text-shadow:0 0 14px rgba(255,209,102,.6);}
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:13px;color:rgba(255,255,255,.75);margin-bottom:6px;}
+.field input,.field textarea,.field select{
+  width:100%;padding:12px 14px;border-radius:16px;font-family:inherit;font-size:15px;color:#fff;
+  background:rgba(255,255,255,.07);border:1px solid var(--glass-border);outline:none;transition:.2s;
+}
+.field input:focus,.field textarea:focus{border-color:var(--neon-cyan);box-shadow:0 0 14px rgba(34,230,255,.35);}
+.field textarea{min-height:90px;resize:vertical;}
+.row-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px;}
+.row-btns .glass-btn{padding:12px 20px;font-size:14px;}
+
+/* لوحة الأدمن */
+#adminPanel .modal{width:min(640px,96vw);}
+.tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;justify-content:center;}
+.tab{
+  padding:10px 18px;border-radius:16px;font-size:14px;font-weight:700;cursor:pointer;color:rgba(255,255,255,.7);
+  background:rgba(255,255,255,.06);border:1px solid var(--glass-border);font-family:inherit;transition:.2s;
+}
+.tab.active{color:#fff;background:linear-gradient(90deg,rgba(255,47,214,.35),rgba(168,85,247,.35));box-shadow:0 0 16px rgba(255,47,214,.35);}
+.gift-item{
+  display:flex;align-items:center;gap:10px;padding:12px 14px;margin-bottom:10px;border-radius:16px;
+  background:rgba(255,255,255,.06);border:1px solid var(--glass-border);
+}
+.gift-item p{flex:1;font-size:14px;line-height:1.7;}
+.mini-btn{
+  width:36px;height:36px;border-radius:12px;border:1px solid var(--glass-border);cursor:pointer;
+  background:rgba(255,255,255,.08);color:#fff;font-size:15px;flex-shrink:0;transition:.2s;
+}
+.mini-btn:hover{background:rgba(255,47,214,.3);}
+.toast{
+  position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:200;
+  padding:12px 26px;border-radius:20px;font-weight:700;font-size:14px;
+  background:linear-gradient(90deg,rgba(255,47,214,.85),rgba(168,85,247,.85));
+  box-shadow:0 0 30px rgba(255,47,214,.6);animation:floatIn .3s;
+}
+.empty-note{text-align:center;color:rgba(255,255,255,.5);padding:20px;font-size:14px;}
+</style>
+</head>
+<body>
+
+<div class="bg-blob b1"></div><div class="bg-blob b2"></div><div class="bg-blob b3"></div>
+<div class="grid-overlay"></div>
+<canvas id="fx"></canvas>
+
+<!-- ===== شاشة القفل ===== -->
+<div id="lockScreen" class="screen">
+  <div class="lock-card" id="lockCard">
+    <div class="lock-emoji">🔐</div>
+    <h1>موقع سرى خالص 👀</h1>
+    <p>اكتبي التاريخ السري عشان تدخلي<br><b style="color:#ffd166">📅 اليوم / الشهر / السنة</b></p>
+    <div class="pin-row" id="pinRow">
+      <input class="pin-box" maxlength="4" inputmode="numeric" placeholder="DD">
+      <input class="pin-box" maxlength="4" inputmode="numeric" placeholder="MM">
+      <input class="pin-box" maxlength="4" inputmode="numeric" placeholder="YYYY">
+    </div>
+    <button class="glass-btn lock-btn" id="unlockBtn">افتحيلي يا قلبي 💜</button>
+    <div class="err" id="lockErr"></div>
+  </div>
+</div>
+
+<!-- ===== الموقع ===== -->
+<div id="main" class="screen hidden">
+  <button class="admin-fab" id="adminFab" title="لوحة التحكم">⚙️</button>
+
+  <div class="hero">
+    <h1 id="dedicationTitle">مهدي من مرعب إلى بنته لميس 💜</h1>
+    <p class="sub" id="dedicationSub">كل سنة وانتي طيبة يا أغلى البنات 🎂✨</p>
+  </div>
+
+  <div class="age-wrap">
+    <div class="age-title">⏳ عمرك الحلو من يوم ما جيتي الدنيا:</div>
+    <div class="age-grid">
+      <div class="age-cell"><b class="c-y" id="aY">0</b><span>سنة</span></div>
+      <div class="age-cell"><b class="c-m" id="aM">0</b><span>شهر</span></div>
+      <div class="age-cell"><b class="c-d" id="aD">0</b><span>يوم</span></div>
+      <div class="age-cell"><b class="c-h" id="aH">0</b><span>ساعة</span></div>
+      <div class="age-cell"><b class="c-min" id="aMin">0</b><span>دقيقة</span></div>
+      <div class="age-cell"><b class="c-s" id="aS">0</b><span>ثانية</span></div>
+    </div>
+  </div>
+
+  <h2 class="section-title">🎁 كلمات مهداة ليكي يا لميس 💌</h2>
+  <div class="gifts-grid" id="giftsGrid"></div>
+
+  <div style="height:90px"></div>
+</div>
+
+<!-- ===== شريط الموسيقى ===== -->
+<div id="musicBar" class="music-bar hidden">
+  <div class="eq off" id="eq"><i></i><i></i><i></i><i></i></div>
+  <span class="song-name" id="songName">🎵 ...</span>
+  <button class="music-btn" id="playBtn">▶️</button>
+</div>
+<div id="musicHint" class="hidden">🎵 اضغطي في أي مكان لتشغيل أغنية عيد ميلادك</div>
+
+<!-- ===== مودال دخول الأدمن ===== -->
+<div id="adminLoginModal" class="modal-bg hidden">
+  <div class="modal">
+    <h2>🔐 دخول المدير</h2>
+    <div class="field"><label>البريد الإلكتروني</label><input type="email" id="adminEmail" placeholder="example@gmail.com" dir="ltr" style="text-align:left"></div>
+    <div class="field"><label>كلمة السر</label><input type="password" id="adminPass" placeholder="••••••" dir="ltr" style="text-align:left"></div>
+    <div class="err" id="adminErr" style="text-align:center"></div>
+    <div class="row-btns">
+      <button class="glass-btn purple" id="adminLoginBtn">دخول 🚀</button>
+      <button class="glass-btn danger" data-close>إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== لوحة الأدمن ===== -->
+<div id="adminPanel" class="modal-bg hidden">
+  <div class="modal">
+    <h2>⚙️ لوحة التحكم — تحكم في كل حاجة</h2>
+    <div class="tabs">
+      <button class="tab active" data-tab="words">💌 الكلمات</button>
+      <button class="tab" data-tab="dedication">✨ الإهداء</button>
+      <button class="tab" data-tab="music">🎵 الأغنية</button>
+      <button class="tab" data-tab="data">🗂️ البيانات</button>
+    </div>
+
+    <div id="tab-words">
+      <div class="field"><label>اكتب الكلمة / الرسالة الجديدة</label><textarea id="newGift" placeholder="اكتب هنا أي حاجة في بالك ليها... 💜"></textarea></div>
+      <div class="row-btns" style="justify-content:flex-start"><button class="glass-btn" id="addGiftBtn">➕ إضافة</button></div>
+      <div id="giftList" style="margin-top:18px"></div>
+    </div>
+
+    <div id="tab-dedication" class="hidden">
+      <div class="field"><label>السطر الأول (الإهداء)</label><input id="dedTitle" type="text"></div>
+      <div class="field"><label>السطر التاني (كل سنة وانتي طيبة)</label><input id="dedSub" type="text"></div>
+      <div class="row-btns" style="justify-content:flex-start"><button class="glass-btn cyan" id="saveDedBtn">💾 حفظ الإهداء</button></div>
+    </div>
+
+    <div id="tab-music" class="hidden">
+      <div class="field"><label>اسم الأغنية الظاهر للمستخدم</label><input id="songNameInput" type="text"></div>
+      <div class="field">
+        <label>التشغيل التلقائي عند دخول الموقع</label>
+        <select id="autoplaySel">
+          <option value="1">✅ شغّل الأغنية تلقائياً</option>
+          <option value="0">❌ المتستخدم يشغّلها بنفسه</option>
+        </select>
+      </div>
+      <div class="row-btns" style="justify-content:flex-start"><button class="glass-btn cyan" id="saveMusicBtn">💾 حفظ إعدادات الأغنية</button></div>
+      <p style="font-size:12px;color:rgba(255,255,255,.55);margin-top:14px;line-height:1.8">ℹ️ المتصفحات ممكن تمنع التشغيل التلقائي، عشان كده بتظهر رسالة للضيفة تضغط عليها وتشتغل على طول.</p>
+    </div>
+
+    <div id="tab-data" class="hidden">
+      <div class="row-btns">
+        <button class="glass-btn danger" id="resetBtn">🗑️ مسح كل البيانات وإرجاع الافتراضي</button>
+      </div>
+      <p style="font-size:12px;color:rgba(255,255,255,.55);margin-top:14px;text-align:center">كل حاجة بتتسجل على جهاز المتصفح نفسه.</p>
+    </div>
+
+    <div class="row-btns">
+      <button class="glass-btn danger" id="adminLogout">🚪 خروج من لوحة التحكم</button>
+      <button class="glass-btn" data-close>إغلاق ✖️</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================= الإعدادات العامة ================= */
+const SITE_PASSWORD = "24/11/2011";
+const ADMIN_EMAIL = "morb.owner@gmail.com";
+const ADMIN_PASS  = "morb555";
+const BIRTH_DATE  = new Date(2011, 10, 24, 0, 0, 0); // 24/11/2011
+
+const DEFAULTS = {
+  gifts: [
+    "يا لميس، انتي أحلى هدية الدنيا منحتهالي 🎁💜",
+    "كل سنة وانتي الحب والفرحة في حياتي 🎂✨",
+    "يا بنتي، عقبال مليون سنة وأنا شايفك دايماً سعيدة 🥹💜",
+    "عيد ميلاد سعيد يا أغلى واحدة في القلب 💜🎈"
+  ],
+  dedicationTitle: "مهدي من مرعب إلى بنته لميس 💜",
+  dedicationSub: "كل سنة وانتي طيبة يا أغلى البنات 🎂✨",
+  songName: "Happy Birthday 🎂 (موسيقى عيد ميلاد)",
+  autoplay: true
+};
+
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem("lamis_"+k); return v===null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ localStorage.setItem("lamis_"+k, JSON.stringify(v)); }
+};
+let gifts = store.get("gifts", null);
+if(!Array.isArray(gifts)){ gifts = DEFAULTS.gifts.slice(); store.set("gifts", gifts); }
+let dedicationTitle = store.get("dedTitle", DEFAULTS.dedicationTitle);
+let dedicationSub   = store.get("dedSub", DEFAULTS.dedicationSub);
+let songName        = store.get("songName", DEFAULTS.songName);
+let autoplay        = store.get("autoplay", DEFAULTS.autoplay);
+let isAdmin = false;
+
+const $ = id => document.getElementById(id);
+
+/* ================= خلفية النيون المتحركة (بالونات وهدايا) ================= */
+const cvs = $("fx"), ctx = cvs.getContext("2d");
+let parts = [];
+function resize(){ cvs.width = innerWidth; cvs.height = innerHeight; }
+addEventListener("resize", resize); resize();
+const EMO = ["🎈","🎁","💜","✨","🎂","🌸"];
+for(let i=0;i<34;i++){
+  parts.push({ x:Math.random()*cvs.width, y:Math.random()*cvs.height,
+    s:14+Math.random()*22, v:.3+Math.random()*.8, o:Math.random()<.5,
+    e:EMO[Math.floor(Math.random()*EMO.length)], w:Math.random()*Math.PI*2, ws:.01+Math.random()*.02 });
+}
+function tickFx(){
+  ctx.clearRect(0,0,cvs.width,cvs.height);
+  for(const p of parts){
+    p.y -= p.v; p.w += p.ws;
+    if(p.y < -50){ p.y = cvs.height + 50; p.x = Math.random()*cvs.width; }
+    const x = p.x + Math.sin(p.w)*22;
+    ctx.font = p.s+"px serif"; ctx.globalAlpha = .75;
+    ctx.shadowColor = "#ff2fd6"; ctx.shadowBlur = p.o ? 14 : 0;
+    ctx.fillText(p.e, x, p.y);
+  }
+  ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+  requestAnimationFrame(tickFx);
+}
+tickFx();
+
+/* ================= شاشة القفل ================= */
+const pinBoxes = [...document.querySelectorAll(".pin-box")];
+pinBoxes[2].maxLength = 4;
+pinBoxes.forEach((b,i)=>{
+  b.addEventListener("input", ()=>{
+    b.value = b.value.replace(/\D/g,"").slice(0, i===2?4:2);
+    b.classList.toggle("filled", b.value.length>0);
+    if(b.value.length === b.maxLength && i < 2) pinBoxes[i+1].focus();
+  });
+  b.addEventListener("keydown", e=>{
+    if(e.key==="Backspace" && !b.value && i>0) pinBoxes[i-1].focus();
+    if(e.key==="Enter") tryUnlock();
+  });
+});
+function tryUnlock(){
+  const v = pinBoxes.map(b=>b.value).join("/");
+  if(v === SITE_PASSWORD){
+    sessionStorage.setItem("lamis_unlocked","1");
+    enterSite();
+  }else{
+    $("lockErr").textContent = "❌ التاريخ غلط يا قلبي، حاولي تاني 😅";
+    const c = $("lockCard"); c.classList.remove("shake"); void c.offsetWidth; c.classList.add("shake");
+    pinBoxes.forEach(b=>{b.value="";b.classList.remove("filled");}); pinBoxes[0].focus();
+  }
+}
+$("unlockBtn").addEventListener("click", tryUnlock);
+
+/* ================= دخول الموقع ================= */
+function enterSite(){
+  $("lockScreen").classList.add("hidden");
+  $("main").classList.remove("hidden");
+  $("musicBar").classList.remove("hidden");
+  renderDedication(); renderGifts(); updateSongUI();
+  if(autoplay) attemptAutoplay();
+}
+if(sessionStorage.getItem("lamis_unlocked")==="1"){ enterSite(); } else { pinBoxes[0].focus(); }
+
+/* ================= عداد العمر ================= */
+function calcAge(){
+  const now = new Date();
+  let y = now.getFullYear()-BIRTH_DATE.getFullYear();
+  let m = now.getMonth()-BIRTH_DATE.getMonth();
+  let d = now.getDate()-BIRTH_DATE.getDate();
+  if(d<0){ m--; d += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+  if(m<0){ y--; m += 12; }
+  // حساب الساعات/الدقائق/الثواني بدقة من تاريخ مرجعي
+  const anchor = new Date(BIRTH_DATE);
+  anchor.setFullYear(anchor.getFullYear()+y);
+  anchor.setMonth(anchor.getMonth()+m);
+  anchor.setDate(anchor.getDate()+d);
+  let diff = Math.max(0, now - anchor);
+  const s = Math.floor(diff/1000);
+  return { y, m, d, h:Math.floor(s/3600)%24, min:Math.floor(s/60)%60, sec:s%60 };
+}
+function updateAge(){
+  const a = calcAge();
+  $("aY").textContent=a.y; $("aM").textContent=a.m; $("aD").textContent=a.d;
+  $("aH").textContent=a.h; $("aMin").textContent=a.min; $("aS").textContent=a.sec;
+}
+setInterval(updateAge, 1000); updateAge();
+
+/* ================= الإهداء والكلمات ================= */
+function renderDedication(){
+  $("dedicationTitle").textContent = dedicationTitle;
+  $("dedicationSub").textContent = dedicationSub;
+}
+function renderGifts(){
+  const g = $("giftsGrid");
+  if(!gifts.length){ g.innerHTML = '<div class="empty-note" style="grid-column:1/-1">لسه مفيش كلمات.. المدير هيضيف أول كلمة 💜</div>'; return; }
+  g.innerHTML = gifts.map((t,i)=>
+    `<div class="gift-card" style="animation-delay:${i*0.08}s"><p>${escapeHtml(t)}</p></div>`
+  ).join("");
+}
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+
+/* ================= الموسيقى (WebAudio — موسيقى عيد ميلاد) ================= */
+let audioCtx = null, playing = false, loopTimer = null;
+const NOTES = {G4:392.00,A4:440.00,B4:493.88,C5:523.25,D5:587.33,E5:659.25,F5:698.46,G5:783.99};
+const MELODY = [
+  ["G4",.75],["G4",.25],["A4",1],["G4",1],["C5",1],["B4",1.8],
+  ["G4",.75],["G4",.25],["A4",1],["G4",1],["D5",1],["C5",1.8],
+  ["G4",.75],["G4",.25],["G5",1],["E5",1],["C5",1],["B4",1],["A4",1.8],
+  ["F5",.75],["F5",.25],["E5",1],["C5",1],["D5",1],["C5",2.2]
+];
+const BEAT = 0.42;
+function ensureCtx(){ if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)(); return audioCtx; }
+function playNote(freq, t, dur){
+  const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+  o.type = "triangle"; o.frequency.value = freq;
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.35, t+0.03);
+  g.gain.exponentialRampToValueAtTime(0.0001, t+dur*0.95);
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(t); o.stop(t+dur);
+}
+function scheduleLoop(){
+  if(!playing) return;
+  let t = audioCtx.currentTime + 0.08;
+  let total = 0;
+  for(const [n,b] of MELODY){
+    const dur = b*BEAT;
+    playNote(NOTES[n], t+total, dur);
+    playNote(NOTES[n]/2, t+total, dur); // باص خفيف
+    total += dur;
+  }
+  loopTimer = setTimeout(scheduleLoop, (total+0.9)*1000);
+}
+function startMusic(){
+  ensureCtx();
+  audioCtx.resume().then(()=>{
+    if(playing) return;
+    playing = true;
+    scheduleLoop();
+    updateMusicUI();
+    hideHint();
+  });
+}
+function stopMusic(){
+  playing = false;
+  clearTimeout(loopTimer);
+  updateMusicUI();
+}
+function updateMusicUI(){
+  $("playBtn").textContent = playing ? "⏸️" : "▶️";
+  $("eq").classList.toggle("off", !playing);
+}
+function updateSongUI(){ $("songName").textContent = "🎵 " + songName; }
+$("playBtn").addEventListener("click", ()=>{ playing ? stopMusic() : startMusic(); });
+
+function attemptAutoplay(){
+  ensureCtx();
+  const p = audioCtx.resume().then(()=>{ if(audioCtx.state==="running"){ startMusic(); } else showHint(); });
+  p.catch(showHint);
+  // لو المتصفح منع التشغيل بدون تفاعل
+  setTimeout(()=>{ if(!playing) showHint(); }, 700);
+}
+function showHint(){ $("musicHint").classList.remove("hidden"); }
+function hideHint(){ $("musicHint").classList.add("hidden"); }
+$("musicHint").addEventListener("click", ()=>{ startMusic(); }, {once:false});
+document.addEventListener("pointerdown", function once(){
+  if(autoplay && !playing) startMusic();
+}, {once:true});
+
+/* ================= الأدمن ================= */
+$("adminFab").addEventListener("click", ()=>{
+  if(isAdmin){ openAdmin(); } else { $("adminLoginModal").classList.remove("hidden"); $("adminErr").textContent=""; }
+});
+$("adminLoginBtn").addEventListener("click", ()=>{
+  const e = $("adminEmail").value.trim().toLowerCase(), p = $("adminPass").value;
+  if(e === ADMIN_EMAIL && p === ADMIN_PASS){
+    isAdmin = true;
+    $("adminLoginModal").classList.add("hidden");
+    openAdmin();
+    toast("✅ أهلاً بيك يا مرعب 👑");
+  }else{
+    $("adminErr").textContent = "❌ البريد أو الباسورد غلط";
+  }
+});
+$("adminPass").addEventListener("keydown", e=>{ if(e.key==="Enter") $("adminLoginBtn").click(); });
+
+function openAdmin(){
+  $("adminPanel").classList.remove("hidden");
+  $("dedTitle").value = dedicationTitle;
+  $("dedSub").value = dedicationSub;
+  $("songNameInput").value = songName;
+  $("autoplaySel").value = autoplay ? "1" : "0";
+  renderGiftList();
+}
+$("adminLogout").addEventListener("click", ()=>{ isAdmin=false; $("adminPanel").classList.add("hidden"); });
+
+/* تبويبات */
+document.querySelectorAll(".tab").forEach(t=>{
+  t.addEventListener("click", ()=>{
+    document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+    t.classList.add("active");
+    ["words","dedication","music","data"].forEach(k=> $("tab-"+k).classList.toggle("hidden", k!==t.dataset.tab));
+  });
+});
+
+/* إدارة الكلمات */
+function renderGiftList(){
+  const el = $("giftList");
+  if(!gifts.length){ el.innerHTML = '<div class="empty-note">مفيش كلمات لسه</div>'; return; }
+  el.innerHTML = gifts.map((t,i)=>`
+    <div class="gift-item">
+      <p>${escapeHtml(t)}</p>
+      <button class="mini-btn" onclick="editGift(${i})" title="تعديل">✏️</button>
+      <button class="mini-btn" onclick="delGift(${i})" title="حذف">🗑️</button>
+    </div>`).join("");
+}
+window.delGift = i => { gifts.splice(i,1); store.set("gifts", gifts); renderGiftList(); renderGifts(); toast("🗑️ اتمسحت"); };
+window.editGift = i => {
+  const t = prompt("عدّلي الكلمة:", gifts[i]);
+  if(t !== null && t.trim()){ gifts[i] = t.trim(); store.set("gifts", gifts); renderGiftList(); renderGifts(); toast("✏️ اتعدلت"); }
+};
+$("addGiftBtn").addEventListener("click", ()=>{
+  const t = $("newGift").value.trim();
+  if(!t){ toast("✍️ اكتب حاجة الأول"); return; }
+  gifts.push(t); store.set("gifts", gifts);
+  $("newGift").value = "";
+  renderGiftList(); renderGifts(); toast("➕ اتضافت 💜");
+});
+
+/* الإهداء */
+$("saveDedBtn").addEventListener("click", ()=>{
+  dedicationTitle = $("dedTitle").value.trim() || DEFAULTS.dedicationTitle;
+  dedicationSub   = $("dedSub").value.trim() || DEFAULTS.dedicationSub;
+  store.set("dedTitle", dedicationTitle); store.set("dedSub", dedicationSub);
+  renderDedication(); toast("💾 الإهداء اتحفظ");
+});
+
+/* الأغنية */
+$("saveMusicBtn").addEventListener("click", ()=>{
+  songName = $("songNameInput").value.trim() || DEFAULTS.songName;
+  autoplay = $("autoplaySel").value === "1";
+  store.set("songName", songName); store.set("autoplay", autoplay);
+  updateSongUI(); toast("💾 إعدادات الأغنية اتحفظت");
+});
+
+/* البيانات */
+$("resetBtn").addEventListener("click", ()=>{
+  if(!confirm("متأكد؟ هيتمسح كل حاجة ويرجع الافتراضي!")) return;
+  localStorage.clear();
+  gifts = DEFAULTS.gifts.slice(); dedicationTitle = DEFAULTS.dedicationTitle;
+  dedicationSub = DEFAULTS.dedicationSub; songName = DEFAULTS.songName; autoplay = DEFAULTS.autoplay;
+  renderDedication(); renderGifts(); updateSongUI(); openAdmin(); toast("🗑️ رجّعنا الافتراضي");
+});
+
+/* إغلاق المودالات */
+document.querySelectorAll("[data-close]").forEach(b=> b.addEventListener("click", e=> e.target.closest(".modal-bg").classList.add("hidden")));
+document.querySelectorAll(".modal-bg").forEach(m=> m.addEventListener("click", e=>{ if(e.target===m) m.classList.add("hidden"); }));
+
+function toast(msg){
+  document.querySelectorAll(".toast").forEach(t=>t.remove());
+  const t = document.createElement("div"); t.className="toast"; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(), 2200);
+}
+</script>
+</body>
+</html>
